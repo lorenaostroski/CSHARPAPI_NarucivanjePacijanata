@@ -1,11 +1,4 @@
-﻿use master;
-go
-drop database if exists narucivanjepacijenata;
-go
-create database narucivanjepacijenata collate Croatian_CI_AS;
-go
-
-use narucivanjepacijenata;
+﻿
 
 
 create table pregledi( 
