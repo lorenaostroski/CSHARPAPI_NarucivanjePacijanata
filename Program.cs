@@ -15,10 +15,18 @@ builder.Services.AddDbContext<EdunovaContext>(
     {
         opcije.UseSqlServer(builder.Configuration.GetConnectionString("EdunovaContext"));
     }
-    
-    
-    
     );
+
+//Svi se od svuda na sve moguæe naèine nogu spojiti  na naš API
+https://code-maze.com/aspnetcore-webapi-best-practices/
+builder.Services.AddCors(opcije =>
+{
+    opcije.AddPolicy("CorsPolicy",
+        builder=>
+           builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+        
+         );
+});
 
 var app = builder.Build();
 
@@ -42,6 +50,8 @@ app.MapControllers();
 app.UseStaticFiles();
 app.UseDefaultFiles();
 app.MapFallbackToFile("index.html");
+
+app.UseCors("CorsPolicy");
 //završio za potrebe produkcije
 
 app.Run();
