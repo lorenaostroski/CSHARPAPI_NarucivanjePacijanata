@@ -18,7 +18,7 @@ builder.Services.AddDbContext<EdunovaContext>(
     );
 
 //Svi se od svuda na sve moguæe naèine nogu spojiti  na naš API
-https://code-maze.com/aspnetcore-webapi-best-practices/
+// èitati https://code-maze.com/aspnetcore-webapi-best-practices/
 builder.Services.AddCors(opcije =>
 {
     opcije.AddPolicy("CorsPolicy",

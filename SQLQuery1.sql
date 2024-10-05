@@ -1,4 +1,22 @@
 ﻿
+SELECT name, collation_name FROM sys.databases;
+ALTER DATABASE db_aadd31_edunovawp4 SET SINGLE_USER WITH
+ROLLBACK IMMEDIATE;
+GO
+ALTER DATABASE db_aadd31_edunovawp4 COLLATE Croatian_CI_AS;
+GO
+ALTER DATABASE db_aadd31_edunovawp4 SET MULTI_USER;
+GO
+SELECT name, collation_name FROM sys.databases;
+GO
+
+
+
+drop table pacijenti;
+drop table ustanove;
+drop table usluge;
+drop table pregledi;
+drop table zdravstvenidjelatnici;
 
 
 create table pregledi( 
