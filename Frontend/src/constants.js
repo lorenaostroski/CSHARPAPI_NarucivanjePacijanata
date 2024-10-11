@@ -1,9 +1,9 @@
 export const RoutesNames = {
 
     HOME: '/',
-    SMJER_PREGLED: '/smjerovi',
-    SMJER_NOVI: '/smjerovi/dodaj',
-    SMJER_PROMJENA: '/smjerovi/:sifra'
+    USTANOVA_PREGLED: '/ustanove',
+    USTANOVA_NOVI: '/ustanove/dodaj',
+    USTANOVA_PROMJENA: '/ustanove/:sifra'
 };
 
 export const BACKEND_URL = 'https://lorenaostroski-001-site1.etempurl.com/api/v1';
