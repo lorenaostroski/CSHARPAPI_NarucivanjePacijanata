@@ -8,9 +8,19 @@ async function get(){
         //console.table(odgovor.data);
         return odgovor.data;
     })
-    .catch((e)=>{console.eror(e)})
+    .catch((e)=>{console.error(e)})
+}
+async function obrisi(sifra) {
+    return await HttpService.delete('/Ustanova/' + sifra)
+    .then((odgovor)=>{
+        return{greska: false, poruka: odgovor.data.poruka}
+    })
+    .catch((e)=>{
+        return{greska: true, poruka:'Smjer se ne može obrisati'}
+    })
 }
 
 export default{
-    get
+    get,
+    obrisi
 }

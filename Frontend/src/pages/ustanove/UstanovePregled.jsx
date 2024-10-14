@@ -1,6 +1,10 @@
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import UstanovaService from "../../services/UstanovaService";
 import { useEffect, useState } from "react";
+import SmjerService from "../../services/SmjerService";
+import { Link } from "react-router-dom";
+import { RoutesNames } from "../../constants";
+
 
 
 export default function UstanovePregled(){
@@ -18,12 +22,26 @@ export default function UstanovePregled(){
     }
 
     useEffect(()=>{
-        dohvatiUstanove
+        dohvatiUstanove();
     },[]);
+
+
+    async function obrisiAsync(sifra) {
+       const odgovor = SmjerService.obrisi(sifra);
+       if(odgovor.greska){
+         alert(odgovor.poruka);
+         return;
+       }
+    }
+
+    function obrisi(sifra){
+        obrisiAsync(sifra);
+    }
     
 
     return(
         <Container>
+            <Link to={RoutesNames.USTANOVA_NOVI}>Dodaj novu ustanovu</Link>
             <Table striped bordered hover responsive>
                 <thead>
                    <tr>
@@ -37,7 +55,13 @@ export default function UstanovePregled(){
                         <tr key={index}>
                             <td>{ustanova.naziv}</td>
                             <td>{ustanova.adresa}</td>
-                            <td>{ustanova.sifra}</td>
+                            <td>
+                                <Button
+                                variant="danger"
+                                onClick={()=>obrisi(ustanova.sifra)}>
+                                    Obriši
+                                </Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
