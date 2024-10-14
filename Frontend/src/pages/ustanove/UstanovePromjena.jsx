@@ -1,7 +1,9 @@
 import {  Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { RoutesNames } from "../../constants";
-import SmjerService from "../../services/SmjerService";
+
+import { useEffect, useState } from "react";
+import UstanovaService from "../../services/UstanovaService";
 
 
 
@@ -10,14 +12,31 @@ import SmjerService from "../../services/SmjerService";
 
 
 
-export default function UstanoveDodaj(){
+
+export default function UstanovePromjena(){
 
     const navigate = useNavigate();
+    const routeParams= useParams();
+    const [ustanova,setUstanova] = useState({});
 
-    async function dodaj(ustanova){
+    async function dohvatiUstanovu(){
+        const odgovor = await UstanovaService.getBySifra(routeParams.sifra);
+        if(odgovor.greska){
+            alert(odgovor.poruka);
+            return;
+        }
+        
+        setUstanova(odgovor.poruka);
+    }
+
+    useEffect(()=>{
+        dohvatiUstanova();
+    });
+
+    async function promjena(ustanova){
        // console.log(ustanova);
        // console.log(JSON.stringify(ustanova));
-       const odgovor = await SmjerService.dodaj(ustanova);
+       const odgovor = await UstanovaService.promjena(routeParams.sifra,ustanova);
        if(odgovor.greska){
          alert(odgovor.poruka);
          return;
@@ -32,7 +51,7 @@ export default function UstanoveDodaj(){
 
         const podaci = new FormData(e.target);
 
-        dodaj({
+        promjena({
             naziv:podaci.get('naziv'),
             adresa:podaci.get('adresa')
         });
@@ -40,18 +59,20 @@ export default function UstanoveDodaj(){
 
     return(
         <Container>
-            Dodavanje novu ustanovu
+            Promjena ustanove
             
             <Form onSubmit={obradiSubmit}>
                 <Form.Group controlId="naziv">
                     <Form.Label>Naziv</Form.Label>
-                    <Form.Control type="text" name="naziv" required/>
+                    <Form.Control type="text" name="naziv" required 
+                    defaultValue={ustanova.naziv}/>
                 </Form.Group>
 
                 
                 <Form.Group controlId="adresa">
                     <Form.Label>Adresa</Form.Label>
-                    <Form.Control type="text" name="adresa"/>
+                    <Form.Control type="text" name="adresa" required
+                    defaultValue={ustanova.adresa}/>
                 </Form.Group>
 
 
@@ -65,7 +86,7 @@ export default function UstanoveDodaj(){
                  </Col>
                 <Col xs={6} sm={6} md={9} lg={6} xl={6} xxl={6}>
                 <Button variant="primary" type="submit" className="siroko">
-                    Dodaj novu ustanovu
+                    Promjeni ustanovu
                 </Button>
                 </Col>
              </Row>
