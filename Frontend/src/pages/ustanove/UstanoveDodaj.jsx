@@ -1,7 +1,7 @@
 import {  Button, Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RoutesNames } from "../../constants";
-import SmjerService from "../../services/SmjerService";
+import UstanovaService from "../../services/UstanovaService";
 
 
 
@@ -17,7 +17,7 @@ export default function UstanoveDodaj(){
     async function dodaj(ustanova){
        // console.log(ustanova);
        // console.log(JSON.stringify(ustanova));
-       const odgovor = await SmjerService.dodaj(ustanova);
+       const odgovor = await UstanovaService.dodaj(ustanova);
        if(odgovor.greska){
          alert(odgovor.poruka);
          return;
@@ -40,7 +40,7 @@ export default function UstanoveDodaj(){
 
     return(
         <Container>
-            Dodavanje novu ustanovu
+            Dodavanje nove ustanove
             
             <Form onSubmit={obradiSubmit}>
                 <Form.Group controlId="naziv">

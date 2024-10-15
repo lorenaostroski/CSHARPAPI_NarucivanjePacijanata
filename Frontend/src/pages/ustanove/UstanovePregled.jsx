@@ -1,7 +1,6 @@
 import { Button, Container, Table } from "react-bootstrap";
 import UstanovaService from "../../services/UstanovaService";
 import { useEffect, useState } from "react";
-import SmjerService from "../../services/SmjerService";
 import { Link, useNavigate } from "react-router-dom";
 import { RoutesNames } from "../../constants";
 
@@ -9,7 +8,7 @@ import { RoutesNames } from "../../constants";
 
 export default function UstanovePregled(){
 
-    const[ustanova,setUstanova]= useState();
+    const[ustanove,setUstanove]= useState();
 
     const navigate = useNavigate();
 
@@ -29,7 +28,7 @@ export default function UstanovePregled(){
 
 
     async function obrisiAsync(sifra) {
-       const odgovor = await SmjerService.obrisi(sifra);
+       const odgovor = await UstanovaService.obrisi(sifra);
        if(odgovor.greska){
          alert(odgovor.poruka);
          return;
@@ -61,7 +60,7 @@ export default function UstanovePregled(){
                             <td>
                             <Button
                                 variant="primary"
-                                onClick={()=>navigate(`/ustanove/${ustanova.sifra}`)}>
+                                onClick={()=>navigate(`/ustanova/${ustanova.sifra}`)}>
                                     Promjeni
                                 </Button>
                                 &nbsp;&nbsp;

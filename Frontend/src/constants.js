@@ -1,7 +1,7 @@
 export const RoutesNames = {
 
     HOME: '/',
-    USTANOVA_PREGLED: '/ustanove',
+    USTANOVA_PREGLED: '/ustanova',
     USTANOVA_NOVI:'/ustanova/dodaj',
      USTANOVA_PROMJENA:'/ustanova/:sifra'
     

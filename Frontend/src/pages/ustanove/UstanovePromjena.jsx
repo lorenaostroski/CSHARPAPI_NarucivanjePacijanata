@@ -30,7 +30,7 @@ export default function UstanovePromjena(){
     }
 
     useEffect(()=>{
-        dohvatiUstanova();
+        dohvatiUstanovu();
     });
 
     async function promjena(ustanova){
