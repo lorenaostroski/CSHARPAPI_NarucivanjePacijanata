@@ -1,4 +1,4 @@
-import {  Button, Col, Container, Form, Row } from "react-bootstrap";
+import {  Button, Col,Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { RoutesNames } from "../../constants";
 import UstanovaService from "../../services/UstanovaService";
@@ -39,7 +39,7 @@ export default function UstanoveDodaj(){
     }
 
     return(
-        <Container>
+        <>
             Dodavanje nove ustanove
             
             <Form onSubmit={obradiSubmit}>
@@ -70,6 +70,6 @@ export default function UstanoveDodaj(){
                 </Col>
              </Row>
             </Form>
-        </Container>
+        </>
     )
 }

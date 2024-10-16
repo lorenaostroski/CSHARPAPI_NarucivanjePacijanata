@@ -1,4 +1,4 @@
-import { Button, Container, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import UstanovaService from "../../services/UstanovaService";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -42,7 +42,7 @@ export default function UstanovePregled(){
     
 
     return(
-        <Container>
+        <>
             <Link to={RoutesNames.USTANOVA_NOVI}>Dodaj novu ustanovu</Link>
             <Table striped bordered hover responsive>
                 <thead>
@@ -76,7 +76,7 @@ export default function UstanovePregled(){
                     ))}
                 </tbody>
             </Table>
-         </Container>
+         </>
 
 
 

@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { RoutesNames } from "../../constants";
 import moment from "moment";
@@ -54,7 +54,7 @@ export default function SmjeroviPromjena(){
     }
 
     return(
-        <Container>
+        <>
             Promjena smjera
             
             <Form onSubmit={obradiSubmit}>
@@ -103,6 +103,6 @@ export default function SmjeroviPromjena(){
                     </Col>
                 </Row>
             </Form>
-        </Container>
+        </>
     )
 }
